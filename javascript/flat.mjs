@@ -21,3 +21,11 @@ console.log({test3});
 const matrix = [[1,2,3],[4,5,6]];
 const list = matrix.flat();
 console.log(list);
+
+const pages = [
+  { items: [1,2] },
+  { items: [3,[4,5]] }
+];
+
+const all = pages.map(p => p.items).flat(Infinity);
+console.log({all});
