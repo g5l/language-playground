@@ -1,8 +1,4 @@
-import util from 'node:util';
-
-const log = (value) => console.log(util.inspect(value, { depth: null, colors: true }));
-const heading = (title) => console.log(`\n=== ${title} ===`);
-const separator = () => console.log('-'.repeat(100));
+import { log, heading, separator } from './logger.mjs';
 
 const users = [
   { name: 'Alice', role: 'admin' },
