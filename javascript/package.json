@@ -1,0 +1,8 @@
+{
+  "name": "javascript-playground",
+  "type": "module",
+  "scripts": {
+    "start": "node run.js",
+    "run": "node run.js"
+  }
+}
