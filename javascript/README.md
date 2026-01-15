@@ -1,17 +1,42 @@
-GroupBy POC (ES2024)
+# JavaScript Playground
 
-Simple proof-of-concept for `Object.groupBy()` and `Map.groupBy()` in JavaScript.
+A collection of proof-of-concept scripts exploring modern JavaScript features.
 
-Requirements
+## Requirements
+
 - Node.js v22+ (or another runtime with ES2024 support)
 
-Run
-- `node groupby.mjs`
+## Usage
 
-What it shows
-- Grouping an array of objects by a string key using `Object.groupBy` (returns a plain object).
-- The same grouping using `Map.groupBy` (returns a `Map`).
-- Difference in key types: booleans become string keys in `Object.groupBy`, but remain booleans in `Map.groupBy`.
-- Non-string keys (like objects) are only preserved by `Map.groupBy`. With `Object.groupBy`, object keys coerce to strings like `"[object Object]"`.
-- Converting between `Map` and object, noting potential information loss when stringifying non-string keys.
+Run all feature scripts:
+```
+npm start
+```
 
+Run a specific script:
+```
+npm run run <filename>
+```
+
+Example:
+```
+npm run run flat
+npm run run groupby
+```
+
+## Adding New Features
+
+Simply create a new `.js` file in the project root. It will automatically be discovered and executed when running `npm start`.
+
+## Current Features
+
+| File | Feature |
+|------|---------|
+| `flat.js` | `Array.prototype.flat()` - flattening nested arrays |
+| `flatMap.js` | `Array.prototype.flatMap()` - map + flatten in one step |
+| `groupby.js` | `Object.groupBy()` and `Map.groupBy()` (ES2024) |
+| `reduceRight.js` | `Array.prototype.reduceRight()` - right-to-left reduction |
+
+## Utilities
+
+- `logger.js` - Helper functions for formatted console output
