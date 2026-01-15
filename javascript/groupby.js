@@ -1,4 +1,4 @@
-import { log, heading, separator } from './logger.mjs';
+import { log, heading, separator } from './logger.js';
 
 const users = [
   { name: 'Alice', role: 'admin' },
