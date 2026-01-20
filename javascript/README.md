@@ -40,3 +40,11 @@ Simply create a new `.js` file in the project root. It will automatically be dis
 ## Utilities
 
 - `logger.js` - Helper functions for formatted console output
+
+## Documentation
+
+In-depth notes on specific JavaScript features:
+
+| Topic | Description |
+|-------|-------------|
+| [Object Literals](docs/object-literals.md) | Shorthand properties, methods, and computed keys (ES6) |

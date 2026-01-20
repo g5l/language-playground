@@ -30,6 +30,6 @@ const person = {
 console.log(person);
 console.log({fullName: person.fullName(), name: person.name, surname: person.surname});
 console.log({age: person.agee});
-person.setFullName = 'New Name';
 console.log('New name');
+person.setFullName = 'New Name';
 console.log({fullName: person.fullName(), name: person.name, surname: person.surname});
