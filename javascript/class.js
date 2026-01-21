@@ -1,4 +1,4 @@
-import {separator} from './logger.js';
+import {heading, separator} from './logger.js';
 
 class BankAccount {
   static bankName = 'Gabriel Bank';
@@ -60,3 +60,39 @@ console.log({getAccountCount: BankAccount.getAccountCount()});
 console.log({bankName: BankAccount.bankName});
 
 separator();
+
+heading("Public and private")
+class Person {
+  // Private field
+  #birthDate;
+
+  // Public field
+  name;
+
+  constructor(name, birthDate) {
+    this.name = name;
+    this.#birthDate = birthDate;
+  }
+
+  // Private method
+  #calculateAge() {
+    const today = new Date();
+    const birth = new Date(this.#birthDate);
+    return today.getFullYear() - birth.getFullYear();
+  }
+
+  // Public method
+  getProfile() {
+    return {
+      name: this.name,
+      age: this.#calculateAge(),
+    };
+  }
+}
+
+const marcos = new Person('Marcos', '1990-05-15');
+
+console.log({name: marcos.name});
+console.log({profile: marcos.getProfile()});
+
+// marcos.#calculateAge(); SyntaxError because it's private
