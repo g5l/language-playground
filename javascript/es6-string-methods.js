@@ -1,8 +1,8 @@
-// includes(searchString, position?)
+import {heading} from "logger.js";
 
 const text = 'JavaScript is awesome';
 
-console.log('=== includes() ===');
+heading('includes()');
 console.log(text.includes('Script'));
 console.log(text.includes('script'));
 console.log(text.includes('is', 12));
@@ -12,12 +12,10 @@ console.log(text.includes('Java', 1));
 const banned = ['spam', 'scam'];
 const comment = 'This is spam content';
 const hasBanned = banned.some(word => comment.toLowerCase().includes(word));
-console.log('Has banned word:', hasBanned); // true
+console.log('Has banned word:', hasBanned);
 
 
-// startsWith(searchString, position?)
-
-console.log('\n=== startsWith() ===');
+heading('startsWith()');
 
 const url = 'https://example.com/api/users';
 console.log(url.startsWith('https://'));
@@ -36,10 +34,7 @@ if (arg.startsWith('--')) {
   console.log('Short flag:', arg.slice(1));
 }
 
-
-// endsWith(searchString, length?)
-
-console.log('\n=== endsWith() ===');
+heading('endsWith()');
 
 const filename = 'document.PDF';
 console.log(filename.endsWith('.PDF'));
@@ -57,10 +52,7 @@ console.log('Is company email:', isCompanyEmail);
 const ensureSlash = path => path.endsWith('/') ? path : path + '/';
 console.log(ensureSlash('/api/users'));
 
-
-// repeat(count)
-
-console.log('\n=== repeat() ===');
+heading('repeat()');
 
 console.log('ha'.repeat(3));
 console.log('🎉'.repeat(5));
