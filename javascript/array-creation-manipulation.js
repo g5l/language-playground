@@ -1,7 +1,5 @@
 import {heading} from "logger.js";
 
-heading('includes()');
-
 heading('fill()');
 
 const arr1 = [1, 2, 3, 4, 5];
@@ -41,3 +39,18 @@ const copyArr2 = [1, 2, 3, 4, 5];
 copyArr2.copyWithin(0, 3, 4); // [4, 2, 3, 4, 5]
 // Copies [4] (index 3 only) to position 0
 console.log(copyArr2);
+
+
+heading('entries()');
+
+const colors = ['red', 'blue', 'yellow'];
+const iterator = colors.entries();
+
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+
+for (const [index, color] of colors.entries()) {
+  console.log(`${index}: ${color}`);
+}
