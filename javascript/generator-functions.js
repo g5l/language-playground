@@ -2,6 +2,33 @@ import {heading} from "logger.js";
 
 heading('Generator Functions');
 
+/* ----- Syntax variation ----- */
+
+function* myGenerator() {
+  yield 'a';
+}
+
+const myGenerator = function* () {
+  yield 'a';
+};
+
+const myGenerator = function* namedGenerator() {
+  yield 'a';
+};
+
+const obj = {
+  *myGenerator() {
+    yield 'a';
+  }
+};
+
+class MyClass {
+  *myGenerator() {
+    yield 'a';
+  }
+}
+
+
 /* --- valid ways to create --- */
 
 function* gen1() {}
