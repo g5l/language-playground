@@ -62,3 +62,25 @@ function* demo() {
 }
 
 console.log({yield: [...demo()]})
+
+function* countTo(n) {
+  for (let i = 1; i <= n; i++) {
+    yield i;
+  }
+}
+
+console.log([...countTo(5)]); // [1, 2, 3, 4, 5]
+
+subTitle('Chat example');
+
+function* conversation() {
+  const name = yield 'What is your name?';
+  const age = yield `Hello ${name}! How old are you?`;
+  return `${name} is ${age} years old`;
+}
+
+const chat = conversation();
+
+console.log(chat.next().value);
+console.log(chat.next('Gabriel').value);
+console.log(chat.next(28).value); 
