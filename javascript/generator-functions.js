@@ -83,4 +83,70 @@ const chat = conversation();
 
 console.log(chat.next().value);
 console.log(chat.next('Gabriel').value);
-console.log(chat.next(28).value); 
+console.log(chat.next(28).value);
+
+subTitle('Scheduler example');
+
+class Scheduler {
+  #tasks = [];
+
+  addTask(task) {
+    this.#tasks.push(task);
+  }
+
+  run() {
+    while (this.#tasks.length > 0) {
+      const task = this.#tasks.shift();
+      const result = task.next();
+
+      if (!result.done) {
+        this.#tasks.push(task); // add task back to queue
+      }
+    }
+  }
+}
+
+function* task1() {
+  console.log('Task 1: Step 1');
+  yield;
+  console.log('Task 1: Step 2');
+  yield;
+  console.log('Task 1: Step 3');
+}
+
+function* task2() {
+  console.log('Task 2: Step A');
+  yield;
+  console.log('Task 2: Step B');
+}
+
+const scheduler = new Scheduler();
+scheduler.addTask(task1());
+scheduler.addTask(task2());
+scheduler.run();
+
+
+subTitle('Paginated Data Fetching');
+
+async function* fetchAllPages(baseUrl, pageSize = 20) {
+  let page = 1;
+  let hasMore = true;
+
+  while (hasMore) {
+    const response = await fetch(`${baseUrl}?page=${page}&limit=${pageSize}`);
+    const data = await response.json();
+
+    for (const item of data.items) {
+      yield item;
+    }
+
+    hasMore = data.items.length === pageSize;
+    page++;
+  }
+}
+
+async function processAllUsers() {
+  for await (const user of fetchAllPages('/api/users')) {
+    console.log('Processing:', user.name);
+  }
+}
