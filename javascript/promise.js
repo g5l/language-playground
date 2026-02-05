@@ -1,4 +1,4 @@
-import {heading} from "logger.js";
+import {heading, subTitle} from "./logger.js";
 
 heading('Promise');
 
@@ -37,3 +37,35 @@ promise.then(null, error => {
 //     isLoading = false;
 //   });
 
+subTitle('then() usage');
+
+Promise.resolve(1)
+  .then(x => x + 1)
+  .then(x => x * 2)
+  .then(x => x + 10)
+  .then(x => console.log(x));
+
+
+function getUser(id) {
+  return new Promise(resolve => {
+    setTimeout(() => resolve({ id, name: 'Gabriel' }), 100);
+  });
+}
+
+function getPosts(userId) {
+  return new Promise(resolve => {
+    setTimeout(() => resolve([
+      { id: 1, title: 'Post 1' },
+      { id: 2, title: 'Post 2' }
+    ]), 100);
+  });
+}
+
+getUser(1)
+  .then(user => {
+    console.log('User:', user);
+    return getPosts(user.id);
+  })
+  .then(posts => {
+    console.log('Posts:', posts);
+  });
