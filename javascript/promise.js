@@ -69,3 +69,43 @@ getUser(1)
   .then(posts => {
     console.log('Posts:', posts);
   });
+
+subTitle('Promise.any(iterable)')
+
+const promise1 = Promise.reject(new Error("error"));
+const promise2 = new Promise((resolve) => setTimeout(resolve, 100, "quick"));
+const promise3 = new Promise((resolve) => setTimeout(resolve, 500, "slow"));
+
+const promises = [promise1, promise2, promise3];
+
+Promise.any(promises).then((value) => console.log(value));
+
+subTitle('Promise.all(iterable)')
+
+// Dashboard requests
+const fetchUser = () => Promise.resolve({ id: 1, name: 'Test' });
+const fetchPosts = () => Promise.resolve([{ id: 1, title: 'Hello' }]);
+const fetchSettings = () => Promise.resolve({ theme: 'dark' });
+
+// Load all
+Promise.all([fetchUser(), fetchPosts(), fetchSettings()])
+  .then(([user, posts, settings]) => {
+    console.log('Dashboard loaded:');
+    console.log('User:', user.name);
+    console.log('Posts:', posts.length);
+    console.log('Theme:', settings.theme);
+  })
+  .catch(error => {
+    console.error('Failed:', error);
+  });
+ 
+subTitle('Promise.race(iterable)')
+
+const delay = (ms, value) => new Promise(resolve => setTimeout(() => resolve(value), ms));
+const server1 = delay(300, 'Server 1');
+const server2 = delay(100, 'Server 2');
+const server3 = delay(200, 'Server 3');
+
+// First to return (success or failure) "win"
+Promise.race([server1, server2, server3])
+  .then(fastest => console.log('Fastest:', fastest));  // 'Server 2'
