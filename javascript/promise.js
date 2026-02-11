@@ -109,3 +109,25 @@ const server3 = delay(200, 'Server 3');
 // First to return (success or failure) "win"
 Promise.race([server1, server2, server3])
   .then(fastest => console.log('Fastest:', fastest));  // 'Server 2'
+
+subTitle('Promise.withResolvers()')
+
+const { promise: promiseWR, resolve, reject } = Promise.withResolvers();
+
+setTimeout(() => resolve('Resolved externally!'), 100);
+promiseWR.then(value => console.log('withResolvers:', value));
+
+subTitle('Promise.allSettled()')
+// Waits for all to complete. Never rejects.
+const emailPromises = [
+  Promise.resolve({ email: 'a@test.com', sent: true }),
+  Promise.reject(new Error('Invalid email')),
+  Promise.resolve({ email: 'c@test.com', sent: true })
+];
+
+Promise.allSettled(emailPromises)
+  .then(results => {
+    console.log('Results:', results);
+    const sent = results.filter(r => r.status === 'fulfilled').length;
+    console.log(`Emails sent: ${sent}/${results.length}`);
+  });
