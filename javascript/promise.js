@@ -118,7 +118,7 @@ setTimeout(() => resolve('Resolved externally!'), 100);
 promiseWR.then(value => console.log('withResolvers:', value));
 
 subTitle('Promise.allSettled()')
-// Waits for all to complete. Never rejects.
+// Waits for allx to complete. Never rejects.
 const emailPromises = [
   Promise.resolve({ email: 'a@test.com', sent: true }),
   Promise.reject(new Error('Invalid email')),
