@@ -1,5 +1,58 @@
 import {heading} from "logger.js";
 
+heading('Map and Set');
+
+class EventEmitter {
+  #events = new Map();
+
+  on(event, listener) {
+    if (!this.#events.has(event)) {
+      this.#events.set(event, new Set());
+    }
+    this.#events.get(event).add(listener);
+    return () => this.off(event, listener); 
+  }
+
+  once(event, listener) {
+    const wrapper = (...args) => {
+      this.off(event, wrapper);
+      listener.apply(this, args);
+    };
+    return this.on(event, wrapper);
+  }
+
+  off(event, listener) {
+    const listeners = this.#events.get(event);
+    if (listeners) {
+      listeners.delete(listener);
+      if (listeners.size === 0) {
+        this.#events.delete(event);
+      }
+    }
+  }
+
+  emit(event, ...args) {
+    const listeners = this.#events.get(event);
+    if (listeners) {
+      for (const listener of listeners) {
+        listener.apply(this, args);
+      }
+    }
+  }
+}
+
+const emitter = new EventEmitter();
+
+const unsubscribe = emitter.on('data', data => console.log('Got:', data));
+emitter.once('connect', () => console.log('Connected!'));
+
+emitter.emit('connect');
+emitter.emit('connect');
+
+emitter.emit('data', 'Hello');
+unsubscribe();
+emitter.emit('data', 'World');
+
 heading('WeakMap');
 
 const privateData = new WeakMap();
