@@ -35,6 +35,16 @@ I/O happens in parallel at the OS level, but JavaScript execution is sequential,
 
 CPU-bound work is the bottleneck. If a callback takes 500ms of computation, every other callback waits. That's why Node offloads heavy CPU work to `worker_threads`.
 
-## Origin
+## Running
 
-Douglas Schmidt's 1995 paper on networked servers. libuv generalized it to file I/O, DNS, timers, and child processes, making Node.js a general-purpose runtime, not just a networking toolkit.
+**Custom reactor** (simulated event source):
+```bash
+node reactor.js
+```
+
+**Node.js TCP reactor** (echo server):
+```bash
+node reactor-node.js
+# In another terminal:
+nc localhost 3000
+```
