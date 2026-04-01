@@ -7,5 +7,5 @@ export const heading = (title) => console.log(`\n=== ${title} ===`);
 
 export const subTitle = (title) => console.log(`\n-- ${title} --`);
 
-export const separator = () => console.log('-'.repeat(100));
+export const separator = () => console.log('\n' + '-'.repeat(100));
 
