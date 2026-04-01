@@ -1,6 +1,6 @@
 const net = require('net');
 
-// The "reactor" — Node's event loop handles the demultiplexing for us
+// The "reactor" Node's event loop handles the demultiplexing for us
 const server = net.createServer((socket) => {
   // This is a handler, registered for each new connection event
 
