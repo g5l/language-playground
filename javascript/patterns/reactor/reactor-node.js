@@ -1,12 +1,10 @@
-const net = require('net');
+import net from 'net';
 
-// The "reactor" Node's event loop handles the demultiplexing for us
 const server = net.createServer((socket) => {
-  // This is a handler, registered for each new connection event
+  console.log('Client connected');
 
   socket.on('data', (data) => {
-    // Handler for "readable data" events on this socket
-    const response = process(data);
+    const response = `Echo: ${data.toString().trim()}\n`;
     socket.write(response);
   });
 
@@ -15,5 +13,6 @@ const server = net.createServer((socket) => {
   });
 });
 
-server.listen(3000);
-// The event loop (reactor) is now running, demultiplexing I/O
+server.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});
