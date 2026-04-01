@@ -131,3 +131,9 @@ Promise.allSettled(emailPromises)
     const sent = results.filter(r => r.status === 'fulfilled').length;
     console.log(`Emails sent: ${sent}/${results.length}`);
   });
+
+subTitle('Promise.try() — Node > 22.12');
+
+Promise.try(() => parseJSON('not json'))
+  .then(data => console.log('Parsed:', data))
+  .catch(err => console.log('Promise.try caught sync throw:', err.message));
