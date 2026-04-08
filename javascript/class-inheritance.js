@@ -117,12 +117,11 @@ class Config {
   static {
     Config.env = 'development';
     Config.debug = Config.env !== 'production';
-    console.log(`Config initialized: env=${Config.env}, debug=${Config.debug}`);
+    console.log(`Config initialized: env=${Config.env}, debug=${Config.debug}`); // env=development, debug=true
   }
 }
 
-console.log('Config.env:', Config.env);
-
+console.log('Config.env:', Config.env); // development
 
 
 subTitle('7. Abstract-like pattern');
