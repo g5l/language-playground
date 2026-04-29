@@ -100,3 +100,16 @@ promise
 - `process.nextTick`
 - Microtasks (Promises)
 - Macrotasks (Timers, I/O)
+
+### Blocking vs Non-Blocking
+#### Blocking (bad for Node.js)
+```js
+while (true) {}
+```
+Blocks the event loop → no other code runs.
+
+#### Non-Blocking
+```js
+setTimeout(() => console.log("Done"), 1000);
+```
+Allows the event loop to continue processing.
